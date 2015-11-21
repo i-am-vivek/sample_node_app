@@ -1,0 +1,28 @@
+doctype
+html(lang="en")
+head
+	meta(charset="utf-8")
+	meta(http-equiv="X-UA-Compatible",content="IE=edge")
+	meta(name="viewport" content="width=device-width, initial-scale=1")
+	meta(name="description" content="")
+	meta(name="author" content="")
+	title #{title}
+	// App Styling Bundle
+	link(href="css/default.min.css",rel="stylesheet")
+	script(src="js/angular/angular.min.js")
+	script(src="js/angular/angular-route.min.js")
+	script(src="js/client-controller.js")
+body(class="login",ng-app="oldcrew")
+	#content
+		.container-fluid
+			.lock-container
+				h1 #{action}
+				.panel.panel-default.text-center
+					// img(src="images/people/110/guy-5.jpg",class="img-circle")
+					.panel-body(ng-controller="formcontroller")
+						block formdesign
+
+// Vendor Scripts Bundle
+script(src="js/vendor.min.js")
+// App Scripts Bundle
+script(src="js/scripts.min.js")

@@ -1,0 +1,17 @@
+extends logreglayout.jade
+block formdesign
+	form(action="/login",method="POST",name="userForm")
+		input(class="form-control",type="email",placeholder="Username",name="uname",ng-required="true",ng-model="login.uname")
+		p(ng-show="userForm.uname.$error.required&&!userForm.uname.$pristine",class="help-block") Email is required.
+		p(ng-show="userForm.uname.$invalid&&!userForm.uname.$pristine",class="help-block") Email is invalid.
+		input(class="form-control",type="password",placeholder="Enter Password",name="pwd",ng-required="true",ng-model="login.pwd")
+		p(ng-show="userForm.pwd.$error.required&&!userForm.pwd.$pristine",class="help-block") Email is required.
+		div
+			p(style="display:inline-block;color:red",id="server_error") {{login.server_error}}
+		button(type="button",ng-click="submitLoginForm(event)",class="btn btn-primary",ng-disabled="userForm.$invalid") Login 
+			i(class="fa fa-fw fa-unlock-alt")
+		a(href="#",class="forgot-password") Forgot password?
+		a(href="/register",class="forgot-password") Click here 
+		| to Register
+
+

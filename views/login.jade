@@ -1,0 +1,18 @@
+extend layout
+block stylesheets
+	link(rel="stylesheet" href="/css/style.css")
+block content
+	form(action="/login" method="POST")
+		table
+			tr
+				td User Name / Email
+				td 
+					input(type="text" name="uname")
+			tr
+				td Password
+				td 
+					input(type="password" name="pwd")
+			tr
+				td(colspan="2")
+					center
+						input(type="submit" value="Log In")

@@ -1,0 +1,50 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible",content="IE=edge")
+		meta(name="viewport",content="width=device-width,initial-scale=1")
+		meta(name="description",content="")
+		meta(name="author",content="")
+		title #{title}
+		block stylesheets
+		link(href="css/bootstrap.min.css" rel="stylesheet")
+		<!-- Font Awesome CSS -->
+		link(rel="stylesheet",href="fonts/font-awesome.min.css",type="text/css",media="screen")
+		<!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+		link(href="css/material.min.css",rel="stylesheet")
+		link(href="css/ripples.min.css",rel="stylesheet")
+		link(href="css/main.css",rel="stylesheet")
+		link(href="css/responsive.css",rel="stylesheet")
+		link(href="css/animate.min.css",rel="stylesheet")
+		link(rel="stylesheet",href="css/bootstrap-material-datetimepicker.css")
+		script(src="js/jquery-2.1.4.min.js")
+		script(type="text/javascript",src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js")
+		script(type="text/javascript",src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js")
+		script(type="text/javascript",src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js")
+		script(type="text/javascript",src="js/bootstrap-material-datetimepicker.js")
+		script(src="js/angular/angular.min.js")
+		script(src="js/angular/angular.min.js")
+		script(src="js/angular/angular-route.min.js")
+		script(src="js/client-controller.js")
+		style.
+			.demo-card-square.mdl-card {
+			  width: 320px;
+			  height: 320px;
+			}
+			.demo-card-square > .mdl-card__title {
+			  color: #fff;
+			  
+			}
+	body(class="")
+		block uisidebar
+		sidebar
+			block sidebar
+		header
+			block header
+		container
+			block content
+		footer
+			block footer
+	script
+		block script

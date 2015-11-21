@@ -1,0 +1,143 @@
+extends layout.jade
+block uisidebar
+	div(class="navbar navbar-invers menu-wrap")
+		div(class="navbar-header text-center")
+			a(class="navbar-brand logo-right",href="javascript:void(0)")
+				i(class="mdi-image-timelapse")				
+				| Pluto
+		ul(class="nav navbar-nav main-navigation")
+			li(class="active")
+				a(href="#home") Home
+			li
+				a(href="#features") Profile
+			li
+				a(href="#ToDos") ToDos
+			li
+				a(href="#Gallery") Gallery
+			li
+				a(href="/logout") Logout
+		button(class="close-button",id="close-button",onclick="$('body').toggleClass('show-menu')") Close Menu
+block content
+	div(ng-app="oldcrew",ng-controller="profilecontroller")
+		div(class="content-wrap")
+			header(class="hero-area",id="home")
+				.container
+					.col-md-12
+						div(class="navbar navbar-inverse sticky-navigation navbar-fixed-top",role="navigation",data-spy="affix",data-offset-top="200")
+							div(class="container")
+								div(class="navbar-header")
+									a(class="logo-left",href="index.html")
+										i Pluto
+								div(class="navbar-right")
+									button(class="menu-icon",id="open-button")
+										i(class="mdi-navigation-menu",onclick="$('body').toggleClass('show-menu')")
+					div(class="contents text-right")
+						h1(class="wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms")
+							| {{profile.user_name}}
+						p(class="wow fadeInRight",data-wow-duration="1000ms",data-wow-delay="400ms")
+							|  {{profile.user_email}}
+						a(href="#features",class="btn btn-lg btn-primary wow fadeInUp")
+							| Profile
+		section(id="features",class="section")
+			div(class="container")
+				h2 
+					center Profile
+				.row
+					.col-md-6.col-sm-6
+						form.contact-form
+							i.mdi-action-account-box
+							input(type="text",class="form-control",name="name",placeholder="Name",ng-model="profile.name")
+							i.mdi-maps-local-post-office
+							input(type="text",class="form-control",name="email",placeholder="Email",readonly,ng-model="profile.user_email")
+							i.mdi-action-account-child
+							input(type="text",class="form-control",name="gender",placeholder="Gender",ng-model="profile.user_gender")
+							i.mdi-action-account-box
+							input(type="text",class="form-control",name="dob",id="dob",readonly,placeholder="DOB",ng-model="profile.user_dob")
+							i.mdi-image-camera-alt
+							input(type="text",class="form-control",name="image",id="image",onclick="$('#user_image_file').click()",placeholder="Profile Picture",readonly)
+							input(type="file",class="form-control",onchange="$('#image').val($(this).val())",name="user_image_file",id="user_image_file",placeholder="Name",style="display:none",ng-model="profile.image")
+							button(type="button",ng-click="SaveData()",id="submit",class="btn btn-lg btn-primary")
+								| Save
+								div(class="ripple-wrapper")
+									div(class="ripple ripple-on",style="left: 26.5px; top: 11px; transform: scale(20.375); background-color: rgba(255, 255, 255, 0.843137);")
+					.col-md-6.col-sm-6
+						p {{profile.user_name}}
+						p 
+							img(src="uploads/{{profile.user_image}}",height="50",width="50")
+						p {{profile.user_email}}
+						p {{profile.user_gender}}
+						p {{profile.user_mobile}}
+		section(id="ToDos",class="section")
+			hr
+			div(class="container")
+				h2 
+					center ToDos
+				.row
+					form.contact-form.col-md-12.col-sm-12
+						.col-md-5.col-sm-5
+								i.mdi-action-account-box
+								input(type="text",class="form-control",name="name",placeholder="ToDo Text",ng-model="todo.text")
+						.col-md-5.col-sm-5
+							i.mdi-maps-local-post-office
+							input(type="text",class="form-control",name="date",id="date",placeholder="Date",readonly,ng-model="todo.date")
+						.col-md-2.col-sm-2
+							button(type="button",ng-click="SaveToData()",id="submit",class="btn btn-lg btn-primary")
+								| Add
+								div(class="ripple-wrapper")
+									div(class="ripple ripple-on",style="left: 26.5px; top: 11px; transform: scale(20.375); background-color: rgba(255, 255, 255, 0.843137);")
+				.row
+					| <table id="table" class="table table-hover table-mc-light-blue">
+					| <thead>
+					| <tr>
+					| <th>ToDo</th>
+					| <th>Date</th>
+					| <th>Action</th>
+					| </tr>
+					| </thead>
+					| <tbody>
+					| <tr ng-repeat="x in todos">
+					| <td>{{x.text}}</td>
+					| <td>{{x.date}}</td>
+					| <td><a ng-click="deleteToDoData(x._id)" data-id="{{x._id}}"><i class='mdi-action-delete'></a></td>
+					| </tr>
+					| </table>
+		section(id="Gallery",class="section")
+			hr
+			div(class="container")
+				h2 
+					center Albums
+				.row
+					form.contact-form.col-md-12.col-sm-12
+						.col-md-4.col-sm-4
+							i.mdi-action-account-box
+							input(type="text",class="form-control",name="image",id="albumimage",placeholder="Image",readonly,onclick="$('#album_image_file').click()",ng-model="album.image")
+							input(type="file",class="form-control",name="image_file",onchange="$('#albumimage').val($(this).val())",id="album_image_file",placeholder="Image" style="display:none")
+						.col-md-3.col-sm-3
+							i.mdi-action-account-box
+							input(type="text",class="form-control",name="image_name",placeholder="Name",ng-model="album.name")
+						.col-md-3.col-sm-3
+							i.mdi-action-account-box
+							input(type="text",class="form-control",name="description",placeholder="Description",ng-model="album.description")
+						.col-md-2.col-sm-2
+							button(type="button",ng-click="SaveAlbumData()",id="submit",class="btn btn-lg btn-primary")
+								| Upload
+								div(class="ripple-wrapper")
+									div(class="ripple ripple-on",style="left: 26.5px; top: 11px; transform: scale(20.375); background-color: rgba(255, 255, 255, 0.843137);")
+				.row			
+					| <div class="demo-card-square mdl-card mdl-shadow--2dp col-md-6 col-sm-6" style="margin-top: 109px;" ng-repeat="x in albums">
+					| <div class="mdl-card__title mdl-card--expand">
+					| <img src="uploads/{{x.image}}" height="100%" style="height:320px">
+					| <h2 class="mdl-card__title-text">{{x.name}}</h2>
+					| </div>
+					| <div class="mdl-card__supporting-text">
+					| {{x.description}}
+					| </div>
+					| <div class="mdl-card__actions mdl-card--border">
+					| <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+					| View Updates
+					| </a>
+					| </div>
+					| </div>
+	script.
+		$('#dob').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY', time: false , maxDate : new Date() });
+		$('#date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY', time: false , minDate : new Date() });

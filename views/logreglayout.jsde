@@ -1,0 +1,15 @@
+doctype
+html
+	head
+		title #{title}
+		block stylesheets
+	body
+		header
+			block header
+		container
+			block content
+		footer
+			block footer
+	script
+		block script
+	
